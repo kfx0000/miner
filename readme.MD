@@ -1,1 +1,1 @@
-https://https://kfx0000.github.io/miner/miner/index.html
+https://kfx0000.github.io/miner/miner/index.html
