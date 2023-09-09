@@ -2,6 +2,8 @@
 
 const numCells = 100;
 const numBombs = 10;
+
+let inGame = true;
 let flags = numBombs;
 let boardArray = new Array(numCells + 1);
 fillBoard(numCells, numBombs);
@@ -53,11 +55,13 @@ function openBombs(cell) {
             openBomb(`tile-${i}`, "black");
         if((tile.contains("tile_flag")) && !boardArray[i]) tile.add("tile_cross");
     }
+    inGame = false;
     console.log("You LOSE!!!");
 }
 
 function openAll() {
     for(let i = 1; i <= numCells; i++) openTile(`tile-${i}`);
+    inGame = false;
     console.log("You WIN!!!");
 }
 
@@ -116,11 +120,9 @@ function flagTile(num) {
 }
 
 document.addEventListener("click", (event) => {
-    if(event.target.classList.contains("tile")) openTile(event.target.classList[1]);
+    if(inGame) if(event.target.classList.contains("tile")) openTile(event.target.classList[1]);
 });
 window.addEventListener("contextmenu", (event) => {
-    if(event.target.classList.contains("tile")) {
-        event.preventDefault();
-        flagTile(event.target.classList[1]);
-    }
+    event.preventDefault();
+    if(inGame) if(event.target.classList.contains("tile")) flagTile(event.target.classList[1]);
 });
