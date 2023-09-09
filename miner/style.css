@@ -1,0 +1,217 @@
+:root {
+    --size: 4;
+}
+/* 4 3.2 2.8 */
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+*:focus-visible {
+    outline: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    color:#000;
+}
+/* main {
+    margin: 0 auto;
+} */
+a {
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.6s;
+}
+a:visited {
+    color: #FFF;
+}
+a:hover {
+    color: #f77;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 0 100px 0 40px;
+}
+h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 50px;
+    letter-spacing: 4px;
+    color: #e01111;
+    /* text-shadow: 0 0 #FF0000, 0 0 10px #111; */
+    text-shadow: 2px 0 1px #801111,
+                -2px 0 1px #801111,
+                0 2px 1px #801111,
+                0 -2px 1px #801111,
+                1px 1px 10px #fff,
+                -1px -1px 10px #fff,
+                1px -1px 10px #fff,
+                -1px 1px 10px #fff;
+}
+.h-m {
+    width: 100%;
+}
+.header__img {
+    width: 100px;
+    filter: drop-shadow(5px 5px 5px #222);
+}
+.header__butt-container {
+    width: 30px;
+    border-radius: 50%;
+    filter:
+    drop-shadow(4px 4px 4px #222);
+}
+.header__button {
+    width: 30px;
+    cursor: pointer;
+    filter: invert(1);
+    transition: 0.8s;
+}
+.header__button:hover {
+    transform: scale(1.3) rotate(90deg);
+    filter: invert(0.9);
+    transition: 0.8s;
+}
+/* .container {
+    margin: 0 auto;
+} */
+.game-container {
+    margin: 40px auto;
+    /* padding: 0 40px; */
+}
+.game-board {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: calc((1600 / var(--size)) * 1px);
+    margin: 0 auto;
+    filter:
+    drop-shadow(8px 8px 8px #444);
+}
+.tile {
+    width: calc(var(--size) * 10px);
+    height: calc(var(--size) * 10px);
+    background-color: #bbb;
+    border: 1px solid #888;
+    box-shadow:
+        inset calc(var(--size) * 1px) 0 0 0 #eee,
+        inset 0 calc(var(--size) * 1px) 0 0 #eee,
+        inset calc(var(--size) * -1px) 0 0 0 #999,
+        inset 0 calc(var(--size) * -1px) 0 0 #999;
+    cursor: pointer;
+}
+.tile:hover {
+    background-color: #ccc;
+}
+.tile_open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: auto;
+    background-color: #ccc;
+    box-shadow: none;
+    font-weight: 700;
+    font-size: calc(var(--size) * 6px);
+}
+.tile_flag {
+    background-image: url("./assets/flag.png");
+    background-position: center;
+    background-size: 18px;
+    background-repeat: no-repeat;
+}
+.tile_cross {
+    background-image: url("./assets/cross.png");
+    background-position: center;
+    background-size: 40px;
+    background-repeat: no-repeat;
+}
+.number_1 {
+    color: #22f;
+}
+.number_2 {
+    color: #1a2;
+}
+.number_3 {
+    color: #e21;
+}
+.number_4 {
+    color: #919;
+}
+.number_5 {
+    color: #744;
+}
+.number_6 {
+    color: #0aa;
+}
+.number_7 {
+    color: #222;
+}
+.number_8 {
+    color: #fd0;
+}
+.bomb-black {
+    width: calc(var(--size) * 10px);
+    height: calc(var(--size) * 10px);
+    background-color: #ccc;
+    background: url('./assets/mine_black.svg') center/cover no-repeat;
+}
+.bomb-red {
+    width: calc(var(--size) * 10px);
+    height: calc(var(--size) * 10px);
+    background-color: #ccc;
+    background: url('./assets/mine_red.svg') center/cover no-repeat;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #071287;
+    color: #FFF;
+    opacity: 0.75;
+}
+.footer__text {
+    width: 100px;
+    text-align: center;
+    margin: 0 2rem;
+    letter-spacing: 0.2rem;
+}
+.footer__rs-logo {
+    width: 6rem;
+    height: 4rem;
+    filter: drop-shadow(5px 5px 5px #fff) invert(1);
+    transition: 0.6s ease-in-out;
+}
+.footer__rs-logo:hover {
+    transform: scale(1.1);
+    transition: 0.6s ease-in-out;
+}
+
+/*
+1-синяя
+2-зеленая
+3-красная
+4-темно-синяя
+5-бордовая(коричневая)
+6-бирюзовая
+7-черная
+8-белая
+*/
