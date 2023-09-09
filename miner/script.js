@@ -96,20 +96,22 @@ function mark(cell, clss) {
 }
 
 function flagTile(num) {
-    let tile = document.querySelector(`.${num}`);
-    if(tile.classList.contains("tile_flag")) {
-        flags++;
-        tile.classList.remove("tile_flag");
-    } else {
-        flags--;
-        tile.classList.add("tile_flag");
-    }
-    if(flags === 0) {
-        let win = true;
-        document.querySelectorAll(".tile_flag").forEach((x) => {
-            if(!boardArray[x.classList[1].split('-')[1]]) win = false;
-        });
-        if(win) openAll(); else openBombs(0);
+    let tile = document.querySelector(`.${num}`).classList;
+    if(!tile.contains("tile_open")) {
+        if(tile.contains("tile_flag")) {
+            flags++;
+            tile.remove("tile_flag");
+        } else {
+            flags--;
+            tile.add("tile_flag");
+        }
+        if(flags === 0) {
+            let win = true;
+            document.querySelectorAll(".tile_flag").forEach((x) => {
+                if(!boardArray[x.classList[1].split('-')[1]]) win = false;
+            });
+            if(win) openAll(); else openBombs(0);
+        }
     }
 }
 
