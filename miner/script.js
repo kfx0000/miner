@@ -1,31 +1,38 @@
 // This is not a classic Miner game. To win, you have to place all the flags on the mined tiles. When you set the last flag, if any of the flags are set wrong, you'll lose.
 
 const numCells = 100;
-const numBombs = 10;
+const numBombs = 20;
 
-let inGame = true;
+let inGame = false;
 let flags = numBombs;
 let boardArray = new Array(numCells + 1);
-fillBoard(numCells, numBombs);
 
+newGame(numCells, numBombs);
 
-function fillBoard(num, bomb) {
-    boardArray.fill(false);
-    let board = document.getElementById("board");
-    for(let i = 1; i <= num; i++) {
+function newGame() {
+    console.log("New game")
+    const elements = document.getElementsByClassName("tile");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+    const board = document.getElementById("board");
+    for(let i = 1; i <= numCells; i++) {
         let tile = document.createElement("div");
         tile.classList.add("tile");
         tile.classList.add(`tile-${i}`);
         tile.setAttribute("id", `tile-${i}`);
         board.appendChild(tile);
     }
-    for(let i = 0; i < bomb; i++) {
-        let rnd = Math.ceil(num * Math.random());
+    boardArray.fill(false);
+    for(let i = 0; i < numBombs; i++) {
+        let rnd = Math.ceil(numCells * Math.random());
         if(boardArray[rnd]) {
             --i;
             continue;
         } else boardArray[rnd] = true;
     }
+    flags = numBombs;
+    inGame = true;
 }
 
 function openTile(num) {
