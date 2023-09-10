@@ -64,8 +64,48 @@ h1 {
                 -1px 1px 10px #fff;
 }
 .h-m {
+    position: relative;
     width: 100%;
 }
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background-color: transparent;
+}
+.modal_visible {
+    z-index: 10;
+}
+.modal_block {
+    display: none;
+}
+.modal_text {
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0;
+    color: #ee1111;
+    text-shadow: 2px 0 1px #801111,
+                -2px 0 1px #801111,
+                0 2px 1px #801111,
+                0 -2px 1px #801111,
+                1px 1px 10px #fff,
+                -1px -1px 10px #fff,
+                1px -1px 10px #fff,
+                -1px 1px 10px #fff;
+    transition: 1s ease-in-out;
+}
+.modal_text_visible {
+    opacity: 1;
+    font-size: 200px;
+}
+
 .header__img {
     width: 100px;
     filter: drop-shadow(5px 5px 5px #222);

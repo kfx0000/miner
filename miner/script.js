@@ -1,7 +1,7 @@
 // This is not a classic Miner game. To win, you have to place all the flags on the mined tiles. When you set the last flag, if any of the flags are set wrong, you'll lose.
 
 const numCells = 100;
-const numBombs = 20;
+const numBombs = 15;
 
 let inGame = false;
 let flags = numBombs;
@@ -35,6 +35,21 @@ function newGame() {
     inGame = true;
 }
 
+function congratShow(txt, colr) {
+    if(document.querySelector(".modal").classList.contains("modal_visible") ||
+        document.querySelector(".modal_text").classList.contains("modal_text_visible")) {
+        document.querySelector(".modal").classList.add("modal_block");
+        document.querySelector(".modal").classList.remove("modal_visible");
+        document.querySelector(".modal_text").classList.remove("modal_text_visible");
+        setTimeout(() => document.querySelector(".modal").classList.remove("modal_block"), 1001);
+    } else {
+        document.querySelector(".modal_text").style.color = colr;
+        document.querySelector(".modal_text").textContent = txt;
+        document.querySelector(".modal_text").classList.add("modal_text_visible");
+        document.querySelector(".modal").classList.add("modal_visible");
+    }
+}
+
 function openTile(num) {
     if (!document.querySelector(`.${num}`).classList.contains("tile_flag")) {
         let cell = +num.split('-')[1];
@@ -63,13 +78,13 @@ function openBombs(cell) {
         if((tile.contains("tile_flag")) && !boardArray[i]) tile.add("tile_cross");
     }
     inGame = false;
-    console.log("You LOSE!!!");
+    congratShow("You LOSE!!!", "#666");
 }
 
 function openAll() {
     for(let i = 1; i <= numCells; i++) openTile(`tile-${i}`);
     inGame = false;
-    console.log("You WIN!!!");
+    congratShow("You WIN!!!", "#e11");
 }
 
 function countTile(cell) {
