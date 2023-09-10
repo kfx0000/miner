@@ -14,12 +14,50 @@
 </head>
 
 <body>
-    <div class="modal" onclick="congratShow('');"><div class="modal_text"></div></div>
+    <div class="modal" onclick="showCongrat('');"><div class="modal_text"></div></div>
+    <div class="menu">
+        <div class="menu__caption">Settings</div>
+        <div class="menu__selector">
+            <div class="menu__selector-capt">Choose board size</div>
+            <div class="menu__radio-wrapper">
+                <label for="board_small" class="menu__label rb-1">
+                    <input type="radio" class="menu__radio rb-1" name="board_rb" id="board_small" checked>
+                    Small
+                </label>
+                <label for="board_medium" class="menu__label rb-2">
+                    <input type="radio" class="menu__radio rb-2" name="board_rb" id="board_medium">
+                    Medium
+                </label>
+                <label for="board_large" class="menu__label rb-3">
+                    <input type="radio" class="menu__radio rb-3" name="board_rb" id="board_large">
+                    Large
+                </label>
+            </div>
+        </div>
+        <div class="menu__selector">
+            <div class="menu__selector-capt">Choose level</div>
+            <div class="menu__radio-wrapper">
+                <label for="level_easy" class="menu__label rl-1">
+                    <input type="radio" class="menu__radio rl-1" name="level_rb" id="level_easy">
+                    Easy
+                </label>
+                <label for="level_normal" class="menu__label rl-2">
+                    <input type="radio" class="menu__radio rl-2" name="level_rb" id="level_normal" checked>
+                    Normal
+                </label>
+                <label for="level_hard" class="menu__label rl-3">
+                    <input type="radio" class="menu__radio rl-3" name="level_rb" id="level_hard">
+                    Hard
+                </label>
+            </div>
+        </div>
+        <div class="menu__score">Score Table</div>
+    </div>
     <div class="h-m">
         <header>
             <img src="./assets/bomb.png" alt="bomb_logo" class="header__img">
             <h1 class="header__name">miner</h1>
-            <div class="header__butt-container">
+            <div class="header__butt-container" onclick="showMenu();">
                 <img src="./assets/settings.png" alt=settings"" class="header__button">
             </div>
         </header>

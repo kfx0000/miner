@@ -35,18 +35,30 @@ function newGame() {
     inGame = true;
 }
 
-function congratShow(txt, colr) {
+function showCongrat(txt, colr) {
     if(document.querySelector(".modal").classList.contains("modal_visible") ||
         document.querySelector(".modal_text").classList.contains("modal_text_visible")) {
         document.querySelector(".modal").classList.add("modal_block");
-        document.querySelector(".modal").classList.remove("modal_visible");
-        document.querySelector(".modal_text").classList.remove("modal_text_visible");
-        setTimeout(() => document.querySelector(".modal").classList.remove("modal_block"), 1001);
+        setTimeout(() => {
+            document.querySelector(".modal").classList.remove("modal_visible");
+            document.querySelector(".modal_text").classList.remove("modal_text_visible");
+        }, 501);
+        setTimeout(() => {
+            document.querySelector(".modal").classList.remove("modal_block");
+        }, 1200);
     } else {
         document.querySelector(".modal_text").style.color = colr;
         document.querySelector(".modal_text").textContent = txt;
         document.querySelector(".modal_text").classList.add("modal_text_visible");
         document.querySelector(".modal").classList.add("modal_visible");
+    }
+}
+
+function showMenu() {
+    if(document.querySelector(".menu").classList.contains("menu_show")) {
+        document.querySelector(".menu").classList.remove("menu_show");
+    } else {
+        document.querySelector(".menu").classList.add("menu_show");
     }
 }
 
@@ -78,13 +90,13 @@ function openBombs(cell) {
         if((tile.contains("tile_flag")) && !boardArray[i]) tile.add("tile_cross");
     }
     inGame = false;
-    congratShow("You LOSE!!!", "#666");
+    showCongrat("You LOSE!!!", "#666");
 }
 
 function openAll() {
     for(let i = 1; i <= numCells; i++) openTile(`tile-${i}`);
     inGame = false;
-    congratShow("You WIN!!!", "#e11");
+    showCongrat("You WIN!!!", "#e11");
 }
 
 function countTile(cell) {
@@ -142,7 +154,15 @@ function flagTile(num) {
 }
 
 document.addEventListener("click", (event) => {
+    if(!event.target.classList.contains("menu") &&
+        !event.target.classList.contains("header__butt-container") &&
+        !event.target.classList.contains("header__button") &&
+        !event.target.classList.contains("menu__caption") &&
+        !event.target.classList.contains("menu__selector") &&
+        !event.target.classList.contains("menu__selector-capt"))
+            document.querySelector(".menu").classList.remove("menu_show");
     if(inGame) if(event.target.classList.contains("tile")) openTile(event.target.classList[1]);
+    console.log(event.target.classList);
 });
 window.addEventListener("contextmenu", (event) => {
     event.preventDefault();

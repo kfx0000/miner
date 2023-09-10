@@ -84,7 +84,8 @@ h1 {
     z-index: 10;
 }
 .modal_block {
-    display: none;
+    transition: 0.5s ease-in-out;
+    opacity: 0;
 }
 .modal_text {
     font-size: 10px;
@@ -104,6 +105,115 @@ h1 {
 .modal_text_visible {
     opacity: 1;
     font-size: 200px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 90px;
+    right: -240px;
+    width: 240px;
+    background: #ccc;
+    z-index: 10;
+    border: 2px solid #666;
+    border-radius: 6px;
+    letter-spacing: 1.2px;
+    filter:
+    drop-shadow(6px 6px 6px #666);
+    transition: 0.6s ease-in-out;
+}
+.menu_show {
+    right: 0;
+}
+.menu__caption {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-shadow: 2px 2px 2px #999;
+}
+.menu__selector {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px 20px;
+}
+.menu__selector-capt {
+    font-weight: 700;
+    text-shadow: 2px 2px 2px #999;
+}
+.menu__radio-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+.menu__label {
+    position: relative;
+    text-shadow: 1px 1px 1px #999;
+    padding: 1px 10px;
+    cursor: pointer;
+}
+.menu__label:hover {
+    color:#919;
+}
+.menu__label:has(.menu__radio:checked) {
+    font-weight: 700;
+    color: #d00;
+}
+.menu__radio {
+    appearance: none;
+    cursor: pointer;
+}
+.menu__radio::before {
+    position: absolute;
+    content: "";
+    top: 2px;
+    left: -16px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    filter: drop-shadow(1px 1px 1px #666);
+}
+.menu__radio::after {
+    position: absolute;
+    content: "";
+    top: 6px;
+    left: -12px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: inset 10px 10px #d00;
+}
+.menu__radio:checked::after {
+    opacity: 1;
+}
+
+
+.menu__score {
+    border: 1px solid #666;
+    border-radius: 4px;
+    background-color: #eee;
+    text-shadow: 1px 1px 1px #999;
+    padding: 10px;
+    margin-bottom: 10px;
+    filter: drop-shadow(4px 4px 4px #444);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+.menu__score:hover {
+    background-color: #666;
+    color: #eee;
+}
+.menu__score:active {
+    filter: none;
+    transition: none;
+    background-color: #222;
+    color: #fff;
 }
 
 .header__img {
