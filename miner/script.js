@@ -1,7 +1,8 @@
 // This is not a classic Miner game. To win, you have to place all the flags on the mined tiles. When you set the last flag, if any of the flags are set wrong, you'll lose.
 
-const numCells = 100;
-const numBombs = 15;
+const numCells = 225;
+const numBombs = 45;
+//10.15.20 - 23.34.45 - 40.60.80
 
 let inGame = false;
 let flags = numBombs;
@@ -32,6 +33,7 @@ function newGame() {
         } else boardArray[rnd] = true;
     }
     flags = numBombs;
+    document.querySelector(".flag_counter").textContent = flags;
     inGame = true;
 }
 
@@ -45,7 +47,7 @@ function showCongrat(txt, colr) {
         }, 501);
         setTimeout(() => {
             document.querySelector(".modal").classList.remove("modal_block");
-        }, 1200);
+        }, 1001);
     } else {
         document.querySelector(".modal_text").style.color = colr;
         document.querySelector(".modal_text").textContent = txt;
@@ -139,9 +141,11 @@ function flagTile(num) {
         if(tile.contains("tile_flag")) {
             flags++;
             tile.remove("tile_flag");
+            document.querySelector(".flag_counter").textContent = flags;
         } else {
             flags--;
             tile.add("tile_flag");
+            document.querySelector(".flag_counter").textContent = flags;
         }
         if(flags === 0) {
             let win = true;
