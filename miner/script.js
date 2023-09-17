@@ -1,17 +1,18 @@
 // This is not a classic Miner game. To win, you have to place all the flags on the mined tiles. When you set the last flag, if any of the flags are set wrong, you'll lose.
+const sett = [
+    {cells: 100, bombs: [10, 15, 20], size: 4},
+    {cells: 225, bombs: [23, 34, 45], size: 3.2},
+    {cells: 400, bombs: [40, 60, 80], size: 2.8}
+];
 
-const numCells = 225;
-const numBombs = 45;
-//10.15.20 - 23.34.45 - 40.60.80
-
+let numCells, numBombs, flags;
 let inGame = false;
-let flags = numBombs;
-let boardArray = new Array(numCells + 1);
+let boardArray = new Array(sett[2].cells + 1);
 
-newGame(numCells, numBombs);
+newGame();
 
 function newGame() {
-    console.log("New game")
+    menuChiose();
     const elements = document.getElementsByClassName("tile");
     while(elements.length > 0){
         elements[0].parentNode.removeChild(elements[0]);
@@ -32,9 +33,22 @@ function newGame() {
             continue;
         } else boardArray[rnd] = true;
     }
-    flags = numBombs;
     document.querySelector(".flag_counter").textContent = flags;
     inGame = true;
+}
+
+function menuChiose() {
+    let t;
+    document.getElementsByName('board_rb').forEach((x) => {
+        if(x.checked) {
+            t = x.classList[1].split("-")[1];
+            numCells = sett[t].cells;
+            document.documentElement.style.setProperty('--size', sett[t].size);
+        };
+    });
+    document.getElementsByName('level_rb').forEach((x) => {
+        if(x.checked) numBombs = flags = sett[t].bombs[x.classList[1].split("-")[1]];
+    });
 }
 
 function showCongrat(txt, colr) {
@@ -165,6 +179,7 @@ document.addEventListener("click", (event) => {
         !event.target.classList.contains("menu__selector") &&
         !event.target.classList.contains("menu__selector-capt"))
             document.querySelector(".menu").classList.remove("menu_show");
+    if(event.target.classList.contains("menu__radio")) newGame();
     if(inGame) if(event.target.classList.contains("tile")) openTile(event.target.classList[1]);
     console.log(event.target.classList);
 });

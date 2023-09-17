@@ -20,16 +20,16 @@
         <div class="menu__selector">
             <div class="menu__selector-capt">Choose board size</div>
             <div class="menu__radio-wrapper">
-                <label for="board_small" class="menu__label rb-1">
-                    <input type="radio" class="menu__radio rb-1" name="board_rb" id="board_small" checked>
+                <label for="board_small" class="menu__label rb-0">
+                    <input type="radio" class="menu__radio rb-0" name="board_rb" id="board_small" checked>
                     Small
                 </label>
-                <label for="board_medium" class="menu__label rb-2">
-                    <input type="radio" class="menu__radio rb-2" name="board_rb" id="board_medium">
+                <label for="board_medium" class="menu__label rb-1">
+                    <input type="radio" class="menu__radio rb-1" name="board_rb" id="board_medium">
                     Medium
                 </label>
-                <label for="board_large" class="menu__label rb-3">
-                    <input type="radio" class="menu__radio rb-3" name="board_rb" id="board_large">
+                <label for="board_large" class="menu__label rb-2">
+                    <input type="radio" class="menu__radio rb-2" name="board_rb" id="board_large">
                     Large
                 </label>
             </div>
@@ -37,16 +37,16 @@
         <div class="menu__selector">
             <div class="menu__selector-capt">Choose level</div>
             <div class="menu__radio-wrapper">
-                <label for="level_easy" class="menu__label rl-1">
-                    <input type="radio" class="menu__radio rl-1" name="level_rb" id="level_easy">
+                <label for="level_easy" class="menu__label rl-0">
+                    <input type="radio" class="menu__radio rl-0" name="level_rb" id="level_easy">
                     Easy
                 </label>
-                <label for="level_normal" class="menu__label rl-2">
-                    <input type="radio" class="menu__radio rl-2" name="level_rb" id="level_normal" checked>
+                <label for="level_normal" class="menu__label rl-1">
+                    <input type="radio" class="menu__radio rl-1" name="level_rb" id="level_normal" checked>
                     Normal
                 </label>
-                <label for="level_hard" class="menu__label rl-3">
-                    <input type="radio" class="menu__radio rl-3" name="level_rb" id="level_hard">
+                <label for="level_hard" class="menu__label rl-2">
+                    <input type="radio" class="menu__radio rl-2" name="level_rb" id="level_hard">
                     Hard
                 </label>
             </div>
@@ -58,7 +58,7 @@
             <img src="./assets/bomb.png" alt="bomb_logo" class="header__img">
             <h1 class="header__name">miner</h1>
             <div class="header__butt-container" onclick="showMenu();">
-                <img src="./assets/settings.png" alt=settings"" class="header__button">
+                <img src="./assets/settings.png" alt=settings"" class="header__button" draggable="false">
             </div>
         </header>
         <main>
@@ -66,7 +66,7 @@
                 <div class="side_panel">
                     <div class="flag_counter-wrapper">
                         Flags left:
-                        <div class="flag_counter">25</div>
+                        <div class="flag_counter"></div>
                     </div>
                 </div>
                 <div class="game-container">
@@ -75,6 +75,10 @@
                 </div>
                 <div class="side_panel">
                     <button class="game_button" onclick="newGame();">New Game</button>
+                    <div class="timer-wrapper">
+                        Timer
+                        <div class="timer"></div>
+                    </div>
                 </div>
             </div>
         </main>
