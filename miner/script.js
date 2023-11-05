@@ -5,7 +5,7 @@ const sett = [
     {cells: 400, bombs: [40, 60, 80], size: 2.8, time: [1200, 2400, 4800]}
 ];
 
-let numCells, numBombs, flags, timeLimit, timer, currTime;
+let numCells, numBombs, flags, timeLimit, timer, currTime, brd, lev;
 let inGame = false;
 let firstClick = true;
 let boardArray = new Array(sett[2].cells + 1);
@@ -14,6 +14,11 @@ newGame();
 
 function newGame() {
     menuChiose();
+    if(!localStorage.getItem("RSS_Miner")) {
+        let arr = new Array(9);
+        for(let i = 0; i < 9; i++) arr[i] = new Array(10).fill({name:'', time:0});
+        localStorage.setItem("RSS_Miner", JSON.stringify(arr));
+    }
     const elements = document.getElementsByClassName("tile");
     while(elements.length > 0){
         elements[0].parentNode.removeChild(elements[0]);
@@ -43,19 +48,18 @@ function newGame() {
 }
 
 function menuChiose() {
-    let t;
     document.getElementsByName('board_rb').forEach((x) => {
         if(x.checked) {
-            t = x.classList[1].split("-")[1];
-            numCells = sett[t].cells;
-            document.documentElement.style.setProperty('--size', sett[t].size);
+            brd = x.classList[1].split("-")[1];
+            numCells = sett[brd].cells;
+            document.documentElement.style.setProperty('--size', sett[brd].size);
         };
     });
     document.getElementsByName('level_rb').forEach((x) => {
         if(x.checked) {
-            let n = x.classList[1].split("-")[1];
-            numBombs = flags = sett[t].bombs[n];
-            timeLimit = sett[t].time[n];
+            lev = x.classList[1].split("-")[1];
+            numBombs = flags = sett[brd].bombs[lev];
+            timeLimit = sett[brd].time[lev];
         }
     });
 }
@@ -90,7 +94,7 @@ function showMenu() {
 function updateTimer() {
     ++currTime;
     document.querySelector(".timer").textContent = getTime(currTime);
-    if(currTime >= timeLimit) openBombs(0,"Time is up!!!");
+    if(currTime >= timeLimit) openBombs(0,"Time is up!!!", "#44e");
 }
 
 function getTime(t) {
@@ -111,7 +115,7 @@ function openTile(num) {
         let cell = +num.split('-')[1];
         if(boardArray[cell]) {
             openBomb(num, "red");
-            openBombs(cell,"You LOSE!!!");
+            openBombs(cell,"You LOSE!!!", "#666");
         } else {
             document.querySelector(`.${num}`).classList.add("tile_open");
             countTile(cell);
@@ -126,7 +130,7 @@ function openBomb(num, color) {
     document.getElementById(num).appendChild(bombTile);
 }
 
-function openBombs(cell, msg) {
+function openBombs(cell, msg, col) {
     for(let i = 1; i <= numCells; i++) {
         let tile = document.getElementById(`tile-${i}`).classList;
         if((i !== cell) && boardArray[i] && (!tile.contains("tile_flag")))
@@ -135,7 +139,7 @@ function openBombs(cell, msg) {
     }
     inGame = false;
     clearInterval(timer);
-    showCongrat(msg, "#666");
+    showCongrat(msg, col);
 }
 
 function openAll() {
@@ -196,7 +200,7 @@ function flagTile(num) {
             document.querySelectorAll(".tile_flag").forEach((x) => {
                 if(!boardArray[x.classList[1].split('-')[1]]) win = false;
             });
-            if(win) openAll(); else openBombs(0, "You LOSE!!!");
+            if(win) openAll(); else openBombs(0, "You LOSE!!!", "#666");
         }
     }
 }

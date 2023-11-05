@@ -120,8 +120,8 @@ h1 {
     top: 90px;
     right: -240px;
     width: 240px;
-    background: #ccc;
-    z-index: 10;
+    background: linear-gradient(60deg, #aaa 0%, #ddd 100%);
+    z-index: 9;
     border: 2px solid #666;
     border-radius: 6px;
     letter-spacing: 1.2px;
